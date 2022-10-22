@@ -5,26 +5,28 @@ import {Search} from '../components/Search';
 
 class Main extends React.Component {
     state = {
-        movies: []
+        movies: [],
+        loading: true
     }
 
     componentDidMount() {
         fetch('http://www.omdbapi.com/?apikey=bc223a58&s=matrix')
             .then(response => response.json())
-            .then(data => this.setState({movies: data.Search}));
+            .then(data => this.setState({movies: data.Search, loading: false}));
     }
 
     searchMovies = (str, type = 'all') => {
+        this.setState({loading: true});
         fetch(`http://www.omdbapi.com/?apikey=bc223a58&s=${str}${type !== 'all' ? `&type=${type}` : ''}`)
             .then(response => response.json())
-            .then(data => this.setState({movies: data.Search}));
+            .then(data => this.setState({movies: data.Search, loading: false}));
     }
 
     render() {
         return <main className="content container">
             <Search searchMovies={this.searchMovies} />
             {
-                this.state.movies.length ? (<Movies movies={this.state.movies} />) : <Preloader />
+                this.state.loading ? <Preloader /> : (<Movies movies={this.state.movies} />)
             }
         </main>
 
