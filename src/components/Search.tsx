@@ -1,18 +1,18 @@
 import React from "react";
 
-class Search extends React.Component {
+class Search extends React.Component<{searchMovies: Function}, {search: string, type: string}> {
     state = {
         search: '',
         type: 'all'
     }
 
-    handleKey = (e) => {
+    handleKey = (e: any) => {
         if (e.key === 'Enter') {
             this.props.searchMovies(this.state.search, this.state.type);
         }
     }
 
-    handleFilter = (e) => {
+    handleFilter = (e: any) => {
         this.setState(() => ({type: e.target.dataset.type}), () => {
             this.props.searchMovies(this.state.search, this.state.type);
         });

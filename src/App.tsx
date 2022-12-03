@@ -1,8 +1,9 @@
 import {Header} from './layout/Header';
 import {Footer} from './layout/Footer';
 import {Main} from './layout/Main';
+import React from 'react';
 
-function App() {
+export default function App(): JSX.Element {
   return (
     <>
       <Header />
@@ -12,4 +13,3 @@ function App() {
   );
 }
 
-export default App;

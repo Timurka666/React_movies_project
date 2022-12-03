@@ -1,3 +1,5 @@
+import React from "react"
+
 function Footer() {
     return <footer className="page-footer teal accent-3">
     <div className="footer-copyright">
